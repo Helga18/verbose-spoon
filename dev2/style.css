@@ -338,6 +338,10 @@ a.knopka:active { background: rgb(152,15,0); } /* при нажатии */
 	width:40px;
 	height:40px;
 }
+button {
+	width:44px;
+	height:40px;
+}
 .inputnew {
 	width:300px;
 	height:35px;
