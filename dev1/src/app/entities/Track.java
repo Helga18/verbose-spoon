@@ -12,13 +12,21 @@ public class Track {
     private Date datetime;
     private Tag tag;
 
-    public Track(int id, User author, String title, String text, Date datetime, Tag tag) {
+    public Track(int id, User author, String title, Date datetime, Tag tag) {
         this.id = id;
         this.author = author;
         this.authorId = author.getId();
         this.title = title;
         this.datetime = datetime;
         this.tag = tag;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
 

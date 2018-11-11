@@ -11,14 +11,14 @@ import java.util.List;
 public interface  TrackDAO {
     List<Track> getAllTracks() throws SQLException;
 
-    void newTrack(User author, String title, Date datetime, String  tag) throws SQLException;
 
     Track getTrackById(int id) throws SQLException;
 
-    boolean deleteTrack(int id) throws SQLException;
 
-    List<Track> getTrackByAuthor(User author) throws SQLException;
+    List<Track> getTracksByAuthor(User author) throws SQLException;
 
     List<Track> getTracksByTag(Tag tag) throws SQLException;
+
+    void newTrack(User author, String title, Date datetime, int tag_id) throws SQLException;
 }
 
