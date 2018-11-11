@@ -79,7 +79,7 @@ public class UserDAO implements app.dao.UserDAO {
 
     @Override
     public User getUserByToken(String token) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement("SELECT * FROM tokens INNER JOIN \"user\" ON tokens.user_id = \"user\".id WHERE token = ?");
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM  INNER JOIN \"user\" ON tokens.user_id = \"user\".id WHERE token = ?");
         statement.setString(1, token);
         ResultSet resultSet = statement.executeQuery();
         if (resultSet.next()) {

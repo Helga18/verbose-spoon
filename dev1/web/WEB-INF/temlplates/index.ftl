@@ -2,11 +2,14 @@
 <#macro title>
     Main page
 </#macro>
+<#macro import>
+    <link rel="stylesheet" href="/static/css/style.css">
+</#macro>
 <#macro main_content>
     <div id ="content">
         <p> MY RECOMENDATIONS </p>
         <br> </br>
-        <img src="music.png"></img>
+        <img src="${music.photo}" width="400" height="250"></img>
 
         <audio controls>
             <source src="audio/music.ogg" type="audio/ogg; codecs=vorbis"  controls="controls">
