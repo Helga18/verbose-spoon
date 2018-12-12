@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Task11-12:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Task11_12_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Task11-12/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Task11-12" />
+          <element id="library" level="project" name="Новая папка" />
+          <element id="library" level="project" name="apache-tomcat-9.0" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="postgresql-42.2.5" />
+          <element id="library" level="project" name="apache-freemarker-2.3" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
