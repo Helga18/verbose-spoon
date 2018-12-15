@@ -1,0 +1,86 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: User
+  Date: 17.10.2018
+  Time: 10:40
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kazan</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+
+    <link rel="icon" href="../img/icon.jpg">
+    <link rel="js" href="../js/main.js>">
+
+</head>
+<body>
+<div id= "header">
+    BookStore
+</div>
+<nav role='navigation'>
+
+    <a class="navbar-logo" href="../index.html"><img src=../img/icon.jpg height="70" width="60">
+    </a>
+
+
+    <ul>
+
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="#">Места</a>
+        <ul>
+          <li><a href="">Кафе</a></li>
+          <li><a href="">Выставки</a></li>
+            <li><a href="">Кино</a></li>
+              <li><a href="">Спортивные развлечения</a></li>
+        </ul>
+      </li>
+
+      <li><a href="signUp.html">Регистрация</a></li>
+  <li><a href="signUp.html">Поиск</a></li
+      <li><a href="signIn.html">Войти</a></li>
+    </ul>
+
+<h1 class="reg">Регистрация</h1>
+
+
+<form class="form-style-7">
+    <ul>
+        <li>
+            <%--@declare id="name"--%><label for="name">Имя</label>
+            <input type="text" name="name" maxlength="100">
+            <span>Enter your first name here</span>
+        </li>
+        <li>
+            <%--@declare id="secname"--%><label for="secName">Фамилия</label>
+            <input type="url" name="url" maxlength="100">
+            <span>Enter your second name</span>
+        </li>
+
+        <li>
+            <%--@declare id="email"--%><label for="email">Email</label>
+            <input type="email" name="email" maxlength="100">
+            <span>Enter a valid email address</span>
+        </li>
+
+        <li>
+            <%--@declare id="password"--%><label for="password">Пароль</label>
+            <input type="password" name="password" maxlength="50">
+            <span>Enter your password</span>
+        </li>
+        <li>
+            <input type="submit" value="Send This" >
+        </li>
+    </ul>
+</form>
+
+
+</body>
+</html>
