@@ -1,0 +1,12 @@
+#answer {
+    -fx-background-color:darkgray;
+}
+#pane {
+    -fx-background-color: darkslategray;
+    -fx-border-radius: 50px;
+}
+.label {
+    -fx-font-size: 300%;
+    -fx-font-family: "Arial Narrow";
+    -fx-background-color: azure;
+}
