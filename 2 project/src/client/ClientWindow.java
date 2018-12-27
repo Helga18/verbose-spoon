@@ -1,12 +1,13 @@
 package client;
 
 
-import entities.Hero;
+import javafx.scene.effect.DropShadow;
+import javafx.util.Duration;
+import models.Hero;
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -14,12 +15,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Circle;
-import javafx.scene.transform.Rotate;
 import javafx.stage.WindowEvent;
+import models.SpriteAnimation;
 
 
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
@@ -28,8 +29,7 @@ import java.util.Scanner;
 public class ClientWindow {
 
     private final int step = 15;
-    private static final String bulletIcon = "http://icons.iconarchive.com/icons/google/noto-emoji-food-drink/32/32382-hamburger-icon.png";
-    private static final String enemyIcon = "http://icons.iconarchive.com/icons/google/noto-emoji-people-stories/64/10932-woman-zombie-icon.png";
+
 
     private static final String SERVER_HOST = "localhost";
     private static final int SERVER_PORT = 3444;
@@ -37,6 +37,7 @@ public class ClientWindow {
     private Scanner inMessage;
     private PrintWriter outMessage;
     private AnimationTimer animationTimer;
+
 
     private ArrayList<Hero> enemies = new ArrayList<>();
     private String clientName = "";
@@ -46,6 +47,8 @@ public class ClientWindow {
     private ImageView hero;
     @FXML
     private AnchorPane pane;
+    private static final String bulletIcon = "http://icons.iconarchive.com/icons/google/noto-emoji-food-drink/32/32382-hamburger-icon.png";
+    private static final String enemyIcon = "http://icons.iconarchive.com/icons/google/noto-emoji-people-stories/64/10932-woman-zombie-icon.png";
 
 
     public ClientWindow() {
@@ -56,7 +59,12 @@ public class ClientWindow {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
+
+
+
+
 
     @FXML
     public void enterAction(KeyEvent keyEvent) {
@@ -66,6 +74,7 @@ public class ClientWindow {
             start();
         }
     }
+
 
     private void start() {
         hero.setVisible(true);
@@ -94,7 +103,7 @@ public class ClientWindow {
                         shoot();
                         break;
                     default:
-                        System.out.println("wrong key pressed");
+                        System.out.println("wrong key");
                 }
             }
         });
@@ -134,14 +143,19 @@ public class ClientWindow {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                ImageView bullet = new ImageView(new Image(bulletIcon));
-                bullet.setLayoutX(x);
-                bullet.setLayoutY(y);
-                pane.getChildren().add(bullet);
+                ImageView ImageView = new ImageView(new Image(bulletIcon));
+                DropShadow dropShadow;
+                SpriteAnimation animation = new SpriteAnimation(ImageView , Duration.millis(200) , 1 , 1 ,262,200, 62 ,53);
+                ImageView.setTranslateX(40);
+                ImageView.setTranslateY(60);
+                animation.play();
+                ImageView.setLayoutX(x);
+                ImageView.setLayoutY(y);
+                pane.getChildren().add(ImageView);
                 new AnimationTimer() {
                     @Override
                     public void handle(long now) {
-                        bullet.setLayoutY(bullet.getLayoutY()-5);
+                        ImageView.setLayoutX(ImageView.getLayoutX()-5);
                     }
                 }.start();
             }
@@ -153,20 +167,21 @@ public class ClientWindow {
 
     private void shoot() {
         ImageView bullet = new ImageView(new Image(bulletIcon));
+
         bullet.setLayoutX(hero.getLayoutX());
         bullet.setLayoutY(hero.getLayoutY());
         pane.getChildren().add(bullet);
         animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                bullet.setLayoutY(bullet.getLayoutY()-5);
-                if(bullet.getLayoutY()<0){
+                bullet.setLayoutX(bullet.getLayoutX()-5);
+                if(bullet.getLayoutX()<0){
                     pane.getChildren().removeAll(bullet);
                     System.out.println("out of border");
                     animationTimer.stop();
                 }
                 System.out.println("checking collision");
-                if(isCollided(bullet.getLayoutX(), bullet.getLayoutY())){
+                if(Collided(bullet.getLayoutX(), bullet.getLayoutY())){
                     System.out.println("collision");
 
                     pane.getChildren().removeAll(bullet);
@@ -181,7 +196,9 @@ public class ClientWindow {
 
     }
 
-    private boolean isCollided(double x, double y) {
+
+
+    private boolean Collided(double x, double y) {
         for (Hero h: enemies){
             if(Math.abs(h.getView().getLayoutX()-x)<=10&&(Math.abs(h.getView().getLayoutY()-y))<=10){
                 outMessage.println("remove:"+h.getName());
@@ -205,7 +222,7 @@ public class ClientWindow {
             });
             return;
         }
-        System.out.println("it's an enemy");
+        System.out.println("enemy");
         Hero deletingEnemy = getHeroByName(name);
         if (deletingEnemy != null) {
             Platform.runLater(new Runnable() {
@@ -229,6 +246,7 @@ public class ClientWindow {
             @Override
             public void run() {
                 ImageView enemy = new ImageView(new Image(enemyIcon));
+
                 enemy.setLayoutX(x);
                 enemy.setLayoutY(y);
                 pane.getChildren().add(enemy);

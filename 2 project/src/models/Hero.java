@@ -1,4 +1,4 @@
-package entities;
+package models;
 
 import javafx.scene.Node;
 
@@ -8,6 +8,8 @@ public class Hero {
     private double y;
 
     private Node view;
+
+
 
     public Node getView() {
         return view;

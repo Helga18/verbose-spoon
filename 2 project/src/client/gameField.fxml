@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="pane" prefHeight="500.0" prefWidth="500.0" styleClass="background" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.ClientWindow">
     <children>
-        <JFXTextField fx:id="answer" alignment="CENTER" layoutX="115.0" layoutY="334.0" onKeyPressed="#enterAction" prefHeight="43.0" prefWidth="271.0" promptText="Enter your name" styleClass="textfield" />
+        <JFXTextField fx:id="answer" alignment="CENTER" layoutX="115.0" layoutY="334.0" onKeyPressed="#enterAction" prefHeight="43.0" prefWidth="271.0" promptText="Enter your Computer IP" styleClass="textfield" />
         <ImageView fx:id="hero" layoutX="63.0" layoutY="88.0" visible="false">
             <Image url="http://icons.iconarchive.com/icons/google/noto-emoji-people-stories/64/10916-man-elf-light-skin-tone-icon.png" />
         </ImageView>

@@ -1,7 +1,5 @@
 package server;
 
-import server.ClientConnection;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -9,9 +7,9 @@ import java.util.ArrayList;
 
 public class Server {
     static final int PORT = 3444;
-    private ArrayList<ClientConnection> clients = new ArrayList<>();
+    private ArrayList<Connection> clients = new ArrayList<>();
 
-    public ArrayList<ClientConnection> getClients() {
+    public ArrayList<Connection> getClients() {
         return clients;
     }
 
@@ -23,7 +21,7 @@ public class Server {
             System.out.println("Сервер запущен!");
             while (true) {
                 clientSocket = serverSocket.accept();
-                ClientConnection client = new ClientConnection(clientSocket, this);
+                Connection client = new Connection(clientSocket, this);
                 new Thread(client).start();
             }
         } catch (IOException ex) {
@@ -39,25 +37,25 @@ public class Server {
         }
     }
 
-    public void sendLocationsToNewClient(ClientConnection client) {
-        for (ClientConnection c : clients) {
+    public void sendLocationsToNewClient(Connection client) {
+        for (Connection c : clients) {
             client.sendMsg("old:" + c.getHero().getName() + ";" + c.getHero().getX() + ";" + c.getHero().getY());
         }
     }
 
     public void sendMessageToAllClients(String msg) {
-        for (ClientConnection c : clients) {
+        for (Connection c : clients) {
             c.sendMsg(msg);
         }
 
     }
 
-    public void removeClient(ClientConnection client) {
+    public void removeClient(Connection client) {
         clients.remove(client);
     }
 
-    public String getClient(ClientConnection clientConnection) {
-        for (ClientConnection c: clients){
+    public String getClient(Connection clientConnection) {
+        for (Connection c: clients){
             System.out.println(c);
             System.out.println(clientConnection);
             if(c==clientConnection){
